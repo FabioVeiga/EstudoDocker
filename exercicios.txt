@@ -1,0 +1,83 @@
+1 - Emita o comando para exibir todas as imagens e depois os contêineres existentes no seu
+repositório local
+images: docker images
+container: docker container ps -a
+
+2 - Emita um comando para exibir todos os contêineres em execução
+docker container ps -a
+
+3 – Crie um contêiner com base na imagem do alpine:3.8 no modo iterativo(-it) de forma que ele
+seja excluído assim que você sair do contêiner.
+docker container run --name teste --rm -it alpine:3.8
+
+4 - Crie um contêiner com base na imagem oficial do alpine:3.8 usando o comando: docker
+container create
+docker container create alpine:3.8
+
+5 - Crie um contêiner chamado cont1 com base na imagem oficial do alpine:3.8 usando o
+comando: docker container run
+docker container run --name cont1 alpine:3.8
+
+
+6- Explique em detalhes o processo de execução do comando do item 4 e quais as diferenças em
+relação ao item comando usado no item 3
+Rsp: o item 4 somente cria o conteiner, já o item 3 ele cria o container e já o executa em modo iterativo,
+deixando o usuario digitar comando no prompt
+
+7 - Repita os itens 1 e 2 para ver as imagens e contêineres existentes
+1: docker container ps -a
+2: docker images
+
+8 - Remova o contêiner cont1 usando o comando apropriado
+docker container rm cont1
+
+9- Crie um contêiner no modo iterativo (-it) chamado cont2 com base na imagem oficial do
+alpine:3.8. A seguir emita o comando echo ‘teste’ > teste.txt e a seguir o comando ls -g. A seguir
+sair do contêiner.
+1: docker container run --name cont2 -it alpine:3.8
+2: echo ‘teste’ > teste.txt
+3: ls -g
+4: exit
+
+
+10- Crie um contêiner chamado cont3 com base na imagem nginx:alpine mapeando a porta 80
+do navegador para a porta 80 do contêiner usando o comando: docker container create. A seguir
+verifique as imagens e os contêineres existentes e verifique se existe algum contêiner em
+execução.
+1: docker container create --name cont3 -p 80:80 nginx:alpine
+2: docker container ps
+
+
+11- Inicie o contêiner cont3 criado no item anterior, a seguir abra e inicie o navegador no
+endereço http://localhost
+docker container start cont3
+
+
+12- Obtenha informações do contêiner cont3 como: uso de cpu, de memória, I/O, etc.
+docker container stats cont3
+
+13- Inspecione o contêiner cont3 usando o comando apropriado
+docker container inspect cont3
+
+
+14- Crie um contêiner chamado cont4 com base na imagem do nginx:alpine usando o comando
+docker container create. A seguir inicie o contêiner. Depois pare o contêiner.
+1: docker container create --name cont4 nginx:alpine
+2: docker container start cont4
+3: docker container stop cont4
+
+
+15- Crie um contêiner chamado cont5 com execução em segundo plano com base na imagem do
+nginx:alpine. Acesse o navegador e depois pare o contêiner e acesse o navegador em localhost. 
+1: docker container run --name cont5 -p 8080:80 -d nginx:alpine
+2: docker container stop cont5
+
+
+16- Execute um comando no contêiner cont5 em execução para obter um Shell(bash)
+docker exec -i -t cont5 /bin/bash
+
+
+17 – Verifique os contêineres e imagens existentes e a seguir pare e remova todos os contêineres
+e imagens que foram criados para este exercício.
+1: docker container prune
+2: docker image prune

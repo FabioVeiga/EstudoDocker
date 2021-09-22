@@ -1,0 +1,6 @@
+FROM microsoft/dotnet
+LABEL version="1.0.1" description="Aplicação ASP .NET CORE MVC"
+COPY distr /app
+WORKDIR /app
+EXPOSE 80/tcp
+ENTRYPOINT ["dotnet","aspnetcoremvc1.dll"]
